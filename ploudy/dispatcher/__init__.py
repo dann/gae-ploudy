@@ -17,10 +17,10 @@ def get_route(path):
     route['action'] = 'index'
     return route
 
-  matches = re.findall(':([^/.]+)', path)
-  if matches.length == 2:
-    route['controller'] = matches[0]
-    route['action'] = matches[1]
+  matches = re.search('^/(\w+)/(\w+)', path)
+  if matches:
+    route['controller'] = matches.group(1)
+    route['action'] = matches.group(2)
   else:
     raise Exception('tenuki desu')
 
